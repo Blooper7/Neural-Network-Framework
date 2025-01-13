@@ -44,8 +44,7 @@ AND TRUTH TABLE
 +----+----+----+
 
 So an AI can learn by not evaluating the inputs themselves, but rather counting
-how many ones there are. If the amount of ones is more than one or equal to two,
-it outputs 1.
+how many ones there are. If the amount of ones is more than one, it outputs 1.
 
 The same is for an OR gate
 
