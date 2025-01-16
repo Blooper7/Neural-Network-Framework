@@ -1,4 +1,4 @@
-from networkParts.layer import Layer
+from layer import Layer
 import numpy as np
 
 def calc_valid_convolution_size(size_input, size_kernel, steps):
@@ -27,12 +27,12 @@ class ConvolutionLayer1D(Layer):
         self.input=input_data
         '''while len(input_data)<self.input_size:
             self.input[0].append(0)'''
-        #print(f"{self.input=}")
-        #print(self.weights)
+        print(f"{self.input=}")
+        print(f"{self.weights=}")
         output_data=np.convolve(self.input, self.weights, mode=self.mode)
         #print(f"{output_data=}")
         #print(f"{self.bias=}")
-        self.output=[output_data+self.bias]
+        self.output=output_data+self.bias
         return self.output
     
     def backward_propagation(self, output_error, learning_rate):
@@ -50,9 +50,7 @@ class ConvolutionLayer1D(Layer):
 if __name__ == "__main__":
     myLayer=ConvolutionLayer1D(6, 3, 1, "valid")
     myLayer.weights=np.array([0.5, -0.5, 1])
-    myLayer2=ConvolutionLayer1D(4, 3, 1, "valid")
-    myLayer2.weights=np.array([0.5, -0.5, 1])
-    myLayer3=ConvolutionLayer1D(2, 2, 1, "valid")
-    myLayer3.weights=np.array([0.5, -0.5])
+    myLayer2=ConvolutionLayer1D(4, 2, 1, "valid")
+    myLayer2.weights=np.array([0.5, -0.5])
     #print(myLayer.bias)
-    print(myLayer3.forward_propagation(myLayer2.forward_propagation(myLayer.forward_propagation(np.array([[1,2,3,4,5,6]])))))
+    print(myLayer2.forward_propagation(myLayer.forward_propagation(np.array([1,2,3,4,5,6]))))
