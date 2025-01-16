@@ -25,13 +25,9 @@ class ConvolutionLayer1D(Layer):
     
     def forward_propagation(self, input_data):
         self.input=input_data
-        '''while len(input_data)<self.input_size:
-            self.input[0].append(0)'''
         print(f"{self.input=}")
         print(f"{self.weights=}")
         output_data=np.convolve(self.input, self.weights, mode=self.mode)
-        #print(f"{output_data=}")
-        #print(f"{self.bias=}")
         self.output=output_data+self.bias
         return self.output
     
@@ -52,5 +48,4 @@ if __name__ == "__main__":
     myLayer.weights=np.array([0.5, -0.5, 1])
     myLayer2=ConvolutionLayer1D(4, 2, 1, "valid")
     myLayer2.weights=np.array([0.5, -0.5])
-    #print(myLayer.bias)
     print(myLayer2.forward_propagation(myLayer.forward_propagation(np.array([1,2,3,4,5,6]))))
